@@ -9,11 +9,11 @@ const path = require(`path`);
 const cors = require(`cors`);
 const Movie = require(`./types/MovieAttributes`);
 const Director = require(`./types/DirectorAttributes`);
-const Book = require(`.types/BookAttributes`);
+const Book = require(`./types/BookAttributes`);
 const Excerpt = require(`./types/ExcerptAttributes`);
 const Author = require(`./types/AuthorAttributes`);
 const Project = require(`./types/ProjectAttributes`);
-const { graphqlHTTP } = require(`graphql-http`);
+import { createHandler } from 'graphql-http/lib/use/express';
 const { buildSchema } = require(`graphql`);
 
 dotenv.config();
@@ -601,15 +601,15 @@ Author.hasMany(Book, { foreignKey: `author_uid` });
 Book.hasMany(Excerpt, { foreignKey: `book_uid` });
 Excerpt.belongsTo(Book, { foreignKey: `book_uid` });
 
-app.use(
+app.all(
   `/graphql`,
-  graphqlHTTP({
+  createHandler({
     schema,
     rootValue: root,
-    graphiql: true,
   }),
 );
 
-app.listen(3001, () => {
-  console.log(`Server is running on port 3001`);
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });
