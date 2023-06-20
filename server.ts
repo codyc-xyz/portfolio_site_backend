@@ -19,7 +19,7 @@ const { buildSchema } = require(`graphql`);
 dotenv.config();
 const app = express();
 var corsOptions = {
-  origin: ['http://localhost:8000', 'jazzy-chimera-85d94c.netlify.app'],
+  origin: ['http://localhost:8000', 'https://main--jazzy-chimera-85d94c.netlify.app'],
   optionsSuccessStatus: 200
 }
 app.use(cors(corsOptions));
