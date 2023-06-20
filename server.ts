@@ -327,16 +327,13 @@ const root = {
 };
 
 let dbUrl;
-if (process.env.DB_URL) {
-  dbUrl = process.env.DB_URL;
+if (process.env.DATABASE_URL) {
+  dbUrl = process.env.DATABASE_URL;
 } else {
-  dbUrl = `default_db_url`;
+  dbUrl = process.env.DB_URL;
 }
 
-const db = new Sequelize(dbUrl, {
-  host: `localhost`,
-  dialect: `postgres`,
-});
+const db = new Sequelize(dbUrl);
 
 Project.init(
   {
