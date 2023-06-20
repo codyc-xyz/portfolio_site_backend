@@ -2,10 +2,10 @@
   "name": "my-backend",
   "version": "1.0.0",
   "description": "Backend server for my website",
-  "main": "server.ts",
+  "main": "index.ts",
   "scripts": {
-    "start": "node dist/server.ts",
-    "dev": "nodemon src/server.ts",
+    "start": "node dist/index.ts",
+    "dev": "nodemon src/index.ts",
     "build": "tsc -p ."
   },
   "author": "Your Name",
