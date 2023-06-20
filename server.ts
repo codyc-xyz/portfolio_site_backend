@@ -337,7 +337,16 @@ if (process.env.DATABASE_URL) {
   dbUrl = process.env.DB_URL;
 }
 
-const db = new Sequelize(dbUrl);
+const db = new Sequelize(process.env.DATABASE_URL, {
+  dialect: 'postgres',
+  protocol: 'postgres',
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false
+    }
+  }
+});
 
 Project.init(
   {
