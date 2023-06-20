@@ -18,7 +18,11 @@ const { buildSchema } = require(`graphql`);
 
 dotenv.config();
 const app = express();
-app.use(cors());
+var corsOptions = {
+  origin: ['http://localhost:8000', 'jazzy-chimera-85d94c.netlify.app'],
+  optionsSuccessStatus: 200
+}
+app.use(cors(corsOptions));
 app.use(express.json());
 const upload = multer({ dest: `uploads/` });
 
