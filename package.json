@@ -4,7 +4,7 @@
   "description": "Backend server for my website",
   "main": "server.ts",
   "scripts": {
-    "start": "npx ts-node server.ts",
+    "start": "node server.ts",
     "dev": "nodemon server.ts",
     "build": "tsc -p ."
   },
