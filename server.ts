@@ -19,7 +19,7 @@ const { buildSchema } = require(`graphql`);
 dotenv.config();
 const app = express();
 var corsOptions = {
-  origin: ['http://localhost:8000', 'https://main--jazzy-chimera-85d94c.netlify.app'],
+  origin: ['http://localhost:8000', 'https://codyc.xyz'],
   optionsSuccessStatus: 200
 }
 app.use(cors(corsOptions));
@@ -336,6 +336,7 @@ if (process.env.DATABASE_URL) {
 } else {
   dbUrl = process.env.DB_URL;
 }
+console.log(dbUrl);
 
 const db = new Sequelize(process.env.DATABASE_URL, {
   dialect: 'postgres',
