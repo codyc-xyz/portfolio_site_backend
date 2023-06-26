@@ -77,6 +77,7 @@ app.post(`/api/resize`, async (req: Request, res: Response) => {
 
 app.all(
   `/graphql`,
+  cors(corsOptions),
   createHandler({
     schema,
     rootValue: root,
