@@ -4,8 +4,8 @@
   "description": "Backend server for my website",
   "main": "src/server.ts",
   "scripts": {
-    "start": "node dist/src/server.js",
-    "dev": "nodemon dist/src/server.js",
+    "start": "node dist/server.js",
+    "dev": "nodemon dist/server.js",
     "build": "tsc -p .",
     "heroku-postbuild": "npm run build"
   },
