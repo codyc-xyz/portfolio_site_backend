@@ -2,13 +2,12 @@
   "name": "my-backend",
   "version": "1.0.0",
   "description": "Backend server for my website",
-  "main": "server.js",
+  "main": "src/server.ts",
   "scripts": {
-    "start": "node dist/server.js",
-    "dev": "nodemon dist/server.js",
+    "start": "node dist/src/server.js",
+    "dev": "nodemon dist/src/server.js",
     "build": "tsc -p .",
     "heroku-postbuild": "npm run build"
-
   },
   "author": "Your Name",
   "license": "MIT",
