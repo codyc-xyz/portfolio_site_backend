@@ -1,8 +1,8 @@
 import express, { Request, Response } from 'express';
 import multer from 'multer';
 import { createHandler } from 'graphql-http/lib/use/express';
-import schema from './src/schema';
-import root from './src/resolvers';
+import schema from './schema';
+import root from './resolvers';
 const sharp = require(`sharp`);
 const fs = require(`fs`);
 const path = require(`path`);

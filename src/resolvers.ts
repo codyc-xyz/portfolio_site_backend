@@ -1,9 +1,9 @@
-const Movie = require(`./types/MovieAttributes`);
-const Director = require(`./types/DirectorAttributes`);
-const Book = require(`./types/BookAttributes`);
-const Excerpt = require(`./types/ExcerptAttributes`);
-const Author = require(`./types/AuthorAttributes`);
-const Project = require(`./types/ProjectAttributes`);
+const { Movie } = require(`./models/MovieAttributes`);
+const { Director } = require(`./models/DirectorAttributes`);
+const { Book } = require(`./models/BookAttributes`);
+const { Excerpt } = require(`./models/ExcerptAttributes`);
+const { Author } = require(`./models/AuthorAttributes`);
+const { Project } = require(`./models/ProjectAttributes`);
 
 const root = {
   allDirectors: async () => {
