@@ -42,6 +42,13 @@ app.post(`/api/resize`, async (req: Request, res: Response) => {
   const inputPath = path.join(__dirname, `/uploads/`, filename);
   const outputPath = path.join(__dirname, `/resized/`, filename);
 
+  const outputDirectory = path.dirname(outputPath);
+  try {
+    await fs.access(outputDirectory);
+  } catch {
+    await fs.mkdir(outputDirectory, { recursive: true });
+  }
+  
   try {
     await fs.access(inputPath);
   } catch (err: any) {
