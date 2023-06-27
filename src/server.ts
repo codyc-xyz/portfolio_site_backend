@@ -34,6 +34,7 @@ app.post(`/api/upload`, upload.single(`file`), (req: Request, res: Response) => 
 
 app.post(`/api/resize`, async (req: Request, res: Response) => {
   const { filename, width, height } = req.body;
+
   if (!filename || !width || !height) {
     return res.status(400).json({ error: `Invalid request parameters` });
   }
@@ -42,15 +43,20 @@ app.post(`/api/resize`, async (req: Request, res: Response) => {
   const outputPath = path.join(__dirname, `/resized/`, filename);
 
   try {
+    await fs.access(inputPath);
+  } catch (err: any) {
+    console.log(`Failed to access file ${inputPath}: ${err.message}`);
+    return res.status(500).json({ error: `Failed to access file: ${err.message}` });
+  }
+
+  try {
     await sharp(inputPath)
       .resize(parseInt(width), parseInt(height))
       .toFile(outputPath);
-    console.log(inputPath)
+
     const data = await fs.readFile(outputPath);
-    console.log(data)
-    const base64String =
-      `data:${req.file ? req.file.mimetype : `image/jpeg`};base64,` +
-      data.toString(`base64`);
+    const base64String = `data:${req.file ? req.file.mimetype : `image/jpeg`};base64,` + data.toString(`base64`);
+
     res.status(200).json({ filename, base64String });
 
     try {
@@ -70,7 +76,6 @@ app.post(`/api/resize`, async (req: Request, res: Response) => {
     return res.status(500).json({ error: `Failed to resize image: ${err.message}` });
   }
 });
-
 app.all(
   `/graphql`,
   cors(corsOptions),
