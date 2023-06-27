@@ -23,7 +23,7 @@ var corsOptions = {
 }
 app.use(cors(corsOptions));
 app.use(express.json());
-const upload = multer({ dest: `uploads/` });
+const upload = multer({ dest: path.join(__dirname, 'uploads') });
 
 app.post(`/api/upload`, upload.single(`file`), (req: Request, res: Response) => {
   if (!req.file) {
@@ -45,8 +45,9 @@ app.post(`/api/resize`, async (req: Request, res: Response) => {
     await sharp(inputPath)
       .resize(parseInt(width), parseInt(height))
       .toFile(outputPath);
-
+    console.log(inputPath)
     const data = await fs.readFile(outputPath);
+    console.log(data)
     const base64String =
       `data:${req.file ? req.file.mimetype : `image/jpeg`};base64,` +
       data.toString(`base64`);
@@ -64,9 +65,9 @@ app.post(`/api/resize`, async (req: Request, res: Response) => {
       console.log(`Failed to delete file ${inputPath}: ${err.message}`);
     }
 
-  } catch (err) {
+  } catch (err: any) {
     console.log(err);
-    return res.status(500).json({ error: `Failed to resize image` });
+    return res.status(500).json({ error: `Failed to resize image: ${err.message}` });
   }
 });
 
