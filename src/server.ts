@@ -53,10 +53,10 @@ app.post(`/api/resize`, async (req: Request, res: Response) => {
     await sharp(inputPath)
       .resize(parseInt(width), parseInt(height))
       .toFile(outputPath);
-
     const data = await fs.readFile(outputPath);
+    console.log(data);
     const base64String = `data:${req.file ? req.file.mimetype : `image/jpeg`};base64,` + data.toString(`base64`);
-
+    console.log(base64String);
     res.status(200).json({ filename, base64String });
 
     try {
