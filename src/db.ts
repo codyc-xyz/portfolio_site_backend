@@ -14,12 +14,12 @@ if (process.env.DATABASE_URL) {
 const db = new Sequelize(dbUrl, {
   dialect: 'postgres',
   protocol: 'postgres',
-  // dialectOptions: {
-  //   ssl: {
-  //     require: true,
-  //     rejectUnauthorized: false
-  //   }
-  // }
+  dialectOptions: {
+  ssl: {
+    require: true,
+    rejectUnauthorized: false
+     }
+   }
 });
 
 export default db;
