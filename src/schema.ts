@@ -73,7 +73,7 @@ const schema = buildSchema(`
     project_image: String!
     project_size: String!
     project_link: String!
-    github_project_link: String!
+    github_project_link: String
     github_ui_link: String
   }
 
